@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tipcalculator.ui.theme.TipCalculatorTheme
 import java.text.NumberFormat
+import androidx.compose.ui.text.input.ImeAction
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,9 +99,6 @@ fun TipTimeLayout() {
     }
 }
 
-/**
- * Calcule le pourboire et le formate selon la devise locale.
- */
 private fun calculateTip(
     amount: Double,
     tipPercent: Double = 15.0
@@ -121,7 +119,9 @@ fun EditNumberField(
         onValueChange = onValueChange,
         label = { Text(stringResource(label)) },
         singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        keyboardOptions = KeyboardOptions.Default.copy(
+            keyboardType = KeyboardType.Number,
+            imeAction = ImeAction.Next),
         modifier = modifier
     )
 }
